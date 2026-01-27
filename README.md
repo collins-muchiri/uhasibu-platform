@@ -6,7 +6,7 @@
 
 > **Kenya-Focused Web-First Prediction Market MVP (Academic Prototype)**
 
-A research platform developed for the University of Nairobi to study prediction markets using virtual currency. This platform enables academic research on market dynamics, user behavior, and forecasting accuracy in a controlled environment.
+A research platform developed for university academic research to study prediction markets using virtual currency. This platform enables academic research on market dynamics, user behavior, and forecasting accuracy in a controlled environment.
 
 ## 🎓 Overview
 
@@ -273,13 +273,13 @@ If you use this platform in your research, please cite:
 
 ```
 Uhasibu Prediction Market Platform (2026)
-University of Nairobi Research Project
+University Research Project
 https://github.com/bucky-ops/Uhasibu-Platform
 ```
 
 ## 📞 Support
 
-- **Research Inquiries**: Contact University of Nairobi Research Ethics Board
+- **Research Inquiries**: Contact University Research Ethics Board
 - **Technical Issues**: Open a GitHub issue
 - **Gambling Help**: Call 1195 (Kenya)
 
@@ -289,4 +289,4 @@ This is a research prototype using virtual currency only. It is not a real gambl
 
 ---
 
-**Built with ❤️ for academic research at the University of Nairobi**
+**Built with ❤️ for university academic research**
