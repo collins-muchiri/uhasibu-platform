@@ -23,24 +23,24 @@ export default function Portfolio({ initialUser, initialMarkets, lang = 'en' }) 
   const texts = t[lang];
 
   return (
-    &lt;&gt;
-      &lt;Head&gt;&lt;title&gt;Portfolio - Uhasibu&lt;/title&gt;&lt;/Head&gt;
-      &lt;div className="min-h-screen bg-gradient-to-br from-green-400 to-blue-500 p-8"&gt;
-        &lt;div className="max-w-4xl mx-auto"&gt;
-          &lt;Link href="/" className="text-white underline mb-8 block"&gt;&amp;lt; Dashboard&lt;/Link&gt;
-          &lt;h1 className="text-4xl font-bold text-white mb-8"&gt;{texts.title}&lt;/h1&gt;
-          &lt;div className="grid md:grid-cols-2 gap-8"&gt;
-            &lt;div className="bg-white/20 backdrop-blur p-8 rounded-3xl"&gt;
-              &lt;h2 className="text-2xl font-bold mb-6"&gt;{texts.positions}&lt;/h2&gt;
-              &lt;p&gt;{texts.noData}&lt;/p&gt;
-            &lt;/div&gt;
-            &lt;div className="bg-white/20 backdrop-blur p-8 rounded-3xl"&gt;
-              &lt;h2 className="text-2xl font-bold mb-6"&gt;{texts.history}&lt;/h2&gt;
-              &lt;p&gt;{trades.length ? trades.map(t => &lt;p key={t.id}&gt;{t.side} {t.quantity} {t.outcome} @ {t.price}&lt;/p&gt;) : 'No trades'}&lt;/p&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/&gt;
+    <>
+      <Head><title>Portfolio - Uhasibu</title></Head>
+      <div className="min-h-screen bg-gradient-to-br from-green-400 to-blue-500 p-8">
+        <div className="max-w-4xl mx-auto">
+          <Link href="/" className="text-white underline mb-8 block">&lt; Dashboard</Link>
+          <h1 className="text-4xl font-bold text-white mb-8">{texts.title}</h1>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-white/20 backdrop-blur p-8 rounded-3xl">
+              <h2 className="text-2xl font-bold mb-6">{texts.positions}</h2>
+              <p>{texts.noData}</p>
+            </div>
+            <div className="bg-white/20 backdrop-blur p-8 rounded-3xl">
+              <h2 className="text-2xl font-bold mb-6">{texts.history}</h2>
+              <p>{trades.length ? trades.map(t => <p key={t.id}>{t.side} {t.quantity} {t.outcome} @ {t.price}</p>) : 'No trades'}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

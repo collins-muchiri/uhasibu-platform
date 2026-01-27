@@ -7,7 +7,7 @@ export default function Admin() {
   const [otp, setOtp] = useState('');
   const [users, setUsers] = useState([]);
   const [stats, setStats] = useState({});
-  const [markets, setMarkets] = useState([]); 
+  const [markets, setMarkets] = useState([]);
   const [loading, setLoading] = useState(false);
   const [view, setView] = useState('login');
 
@@ -55,19 +55,48 @@ export default function Admin() {
 
   const loadData = async () => {
     try {
+      const savedToken = localStorage.getItem('adminToken') || token;
       const res = await fetch(`${API_URL}/admin/users`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${savedToken}` },
       });
       const data = await res.json();
       setUsers(data);
 
       const resStats = await fetch(`${API_URL}/admin/stats`, {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${savedToken}` },
       });
       const statsData = await resStats.json();
       setStats(statsData);
+
+      const resMarkets = await fetch(`${API_URL}/admin/markets`, {
+        headers: { Authorization: `Bearer ${savedToken}` },
+      });
+      const marketsData = await resMarkets.json();
+      setMarkets(marketsData);
     } catch (err) {
-      alert('Error loading data');
+      console.error('Error loading data:', err);
+    }
+  };
+
+  const resolveMarket = async (id, outcome) => {
+    if (!confirm(`Resolve market ${id} as ${outcome ? 'YES' : 'NO'}?`)) return;
+    try {
+      const res = await fetch(`${API_URL}/admin/resolve/${id}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ outcome }),
+      });
+      if (res.ok) {
+        loadData();
+        alert('Resolved');
+      } else {
+        alert('Error resolving market');
+      }
+    } catch (err) {
+      alert('Network error');
     }
   };
 
@@ -205,19 +234,18 @@ export default function Admin() {
                     <tr key={market.id} className="border-t hover:bg-gray-50">
                       <td className="p-4">{market.title}</td>
                       <td className="p-4">
-                        <span className={`px-2 py-1 rounded-full text-xs font-bold ${
-                          market.status === 'open' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-                        }`}>
+                        <span className={`px-2 py-1 rounded-full text-xs font-bold ${market.status === 'open' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                          }`}>
                           {market.status}
                         </span>
                       </td>
                       <td className="p-4">{new Date(market.end_date).toLocaleDateString()}</td>
                       <td className="p-4">
                         {market.status === 'open' && (
-                          &lt;&gt;
+                          <>
                             <button onClick={() => resolveMarket(market.id, true)} className="bg-green-500 text-white px-3 py-1 rounded mr-2 hover:bg-green-600">YES</button>
                             <button onClick={() => resolveMarket(market.id, false)} className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">NO</button>
-                          &lt;/&gt;
+                          </>
                         )}
                       </td>
                     </tr>
@@ -231,49 +259,3 @@ export default function Admin() {
     </>
   );
 }
-
-const resolveMarket = async (id, outcome) => {
-  if (!confirm(`Resolve market ${id} as ${outcome ? 'YES' : 'NO'}?`)) return;
-  try {
-    const res = await fetch(`${API_URL}/admin/resolve/${id}`, {
-      method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      },
-      body: JSON.stringify({ outcome }),
-    });
-    if (res.ok) {
-      loadData();
-      alert('Resolved');
-    } else {
-      alert('Error');
-    }
-  } catch {
-    alert('Error');
-  }
-};
-
-const loadData = async () => {
-  try {
-    const res = await fetch(`${API_URL}/admin/users`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const data = await res.json();
-    setUsers(data);
-
-    const resStats = await fetch(`${API_URL}/admin/stats`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const statsData = await resStats.json();
-    setStats(statsData);
-
-    const resMarkets = await fetch(`${API_URL}/admin/markets`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const marketsData = await resMarkets.json();
-    setMarkets(marketsData);
-  } catch (err) {
-    alert('Error loading data');
-  }
-};

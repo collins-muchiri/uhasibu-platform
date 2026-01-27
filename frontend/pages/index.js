@@ -66,56 +66,56 @@ export default function Home() {
 
   if (showAgeGate) {
     return (
-      &lt;&gt;
-        &lt;Head&gt;
-          &lt;title&gt;{texts.title} - {texts.ageGate}&lt;/title&gt;
-        &lt;/Head&gt;
-        &lt;div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 flex flex-col items-center justify-center p-8 text-white"&gt;
-          &lt;div className="text-center mb-8"&gt;
-            &lt;h1 className="text-4xl md:text-6xl font-bold mb-4"&gt;🎓 {texts.university}&lt;/h1&gt;
-            &lt;h2 className="text-2xl md:text-3xl mb-2"&gt;{texts.title}&lt;/h2&gt;
-            &lt;p className="text-xl opacity-90"&gt;{texts.subtitle}&lt;/p&gt;
-          &lt;/div&gt;
-          &lt;div className="bg-white/20 backdrop-blur-xl rounded-2xl p-8 max-w-md w-full mx-auto shadow-2xl"&gt;
-            &lt;h3 className="text-2xl font-bold mb-6 text-center"&gt;{texts.ageGate}&lt;/h3&gt;
-            &lt;p className="mb-4 text-lg"&gt;{texts.desc}&lt;/p&gt;
-            &lt;div className="mb-6"&gt;
-              &lt;label className="block text-sm font-medium mb-2"&gt;{texts.dobLabel}&lt;/label&gt;
-              &lt;input
+      <>
+        <Head>
+          <title>{texts.title} - {texts.ageGate}</title>
+        </Head>
+        <div className="min-h-screen bg-gradient-to-br from-blue-500 to-purple-600 flex flex-col items-center justify-center p-8 text-white">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">🎓 {texts.university}</h1>
+            <h2 className="text-2xl md:text-3xl mb-2">{texts.title}</h2>
+            <p className="text-xl opacity-90">{texts.subtitle}</p>
+          </div>
+          <div className="bg-white/20 backdrop-blur-xl rounded-2xl p-8 max-w-md w-full mx-auto shadow-2xl">
+            <h3 className="text-2xl font-bold mb-6 text-center">{texts.ageGate}</h3>
+            <p className="mb-4 text-lg">{texts.desc}</p>
+            <div className="mb-6">
+              <label className="block text-sm font-medium mb-2">{texts.dobLabel}</label>
+              <input
                 type="date"
                 value={age}
                 onChange={(e) => setAge(e.target.value)}
                 className="w-full p-3 rounded-xl bg-white/50 border border-white/30 focus:outline-none focus:ring-2 focus:ring-white text-black"
                 max={new Date(Date.now() - (18 * 365 * 24 * 60 * 60 * 1000)).toISOString().split('T')[0]}
-              /&gt;
-            &lt;/div&gt;
-            &lt;div className="mb-6 flex items-center"&gt;
-              &lt;input
+              />
+            </div>
+            <div className="mb-6 flex items-center">
+              <input
                 id="terms"
                 type="checkbox"
                 checked={termsAccepted}
                 onChange={(e) => setTermsAccepted(e.target.checked)}
                 className="w-5 h-5 text-blue-600 bg-white/50 border-white/30 rounded focus:ring-blue-500"
-              /&gt;
-              &lt;label htmlFor="terms" className="ml-2 text-sm"&gt;
+              />
+              <label htmlFor="terms" className="ml-2 text-sm">
                 {texts.terms} ({texts.termsLink})
-              &lt;/label&gt;
-            &lt;/div&gt;
-            {error && &lt;p className="text-red-300 text-sm mb-4 text-center"&gt;{error}&lt;/p&gt;}
-            &lt;button
+              </label>
+            </div>
+            {error && <p className="text-red-300 text-sm mb-4 text-center">{error}</p>}
+            <button
               onClick={handleProceed}
               className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-xl text-lg transition-all duration-200 transform hover:scale-105 shadow-xl"
-            &gt;
+            >
               {texts.proceed}
-            &lt;/button&gt;
-          &lt;/div&gt;
-          &lt;div className="mt-8 flex space-x-4"&gt;
-            &lt;button onClick={() => setLang('en')} className={`px-4 py-2 rounded-xl ${lang === 'en' ? 'bg-white/30' : 'bg-white/10'}`}&gt;EN&lt;/button&gt;
-            &lt;button onClick={() => setLang('sw')} className={`px-4 py-2 rounded-xl ${lang === 'sw' ? 'bg-white/30' : 'bg-white/10'}`}&gt;SW&lt;/button&gt;
-          &lt;/div&gt;
-          &lt;p className="mt-8 text-sm opacity-75 text-center"&gt;This is a research prototype. Virtual money only. Gambling help: 1195&lt;/p&gt;
-        &lt;/div&gt;
-      &lt;/&gt;
+            </button>
+          </div>
+          <div className="mt-8 flex space-x-4">
+            <button onClick={() => setLang('en')} className={`px-4 py-2 rounded-xl ${lang === 'en' ? 'bg-white/30' : 'bg-white/10'}`}>EN</button>
+            <button onClick={() => setLang('sw')} className={`px-4 py-2 rounded-xl ${lang === 'sw' ? 'bg-white/30' : 'bg-white/10'}`}>SW</button>
+          </div>
+          <p className="mt-8 text-sm opacity-75 text-center">This is a research prototype. Virtual money only. Gambling help: 1195</p>
+        </div>
+      </>
     );
   }
 
@@ -148,7 +148,7 @@ export default function Home() {
         setUser(u);
         if (u.name) setStep('dashboard');
       }
-    } catch {}
+    } catch { }
   };
 
   const sendOTP = async () => {
@@ -196,7 +196,7 @@ export default function Home() {
     try {
       const res = await fetch(`${API_URL}/user/profile`, {
         method: 'PUT',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
         },
@@ -206,7 +206,7 @@ export default function Home() {
         setStep('dashboard');
         setUser({ ...user, ...formData });
       }
-    } catch {}
+    } catch { }
     setLoading(false);
   };
 
@@ -265,100 +265,100 @@ export default function Home() {
 
   if (step === 'phone') {
     return (
-      &lt;div className="min-h-screen bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center p-8"&gt;
-        &lt;div className="bg-white/30 backdrop-blur-xl rounded-3xl p-10 max-w-md w-full shadow-2xl text-white"&gt;
-          &lt;h2 className="text-3xl font-bold mb-8 text-center"&gt;{texts.title}&lt;/h2&gt;
-          &lt;p className="text-lg mb-8 text-center opacity-90"&gt;{texts.desc}&lt;/p&gt;
-          &lt;input
+      <div className="min-h-screen bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center p-8">
+        <div className="bg-white/30 backdrop-blur-xl rounded-3xl p-10 max-w-md w-full shadow-2xl text-white">
+          <h2 className="text-3xl font-bold mb-8 text-center">{texts.title}</h2>
+          <p className="text-lg mb-8 text-center opacity-90">{texts.desc}</p>
+          <input
             type="tel"
             placeholder={textsAuth.phone}
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             className="w-full p-4 rounded-2xl bg-white/50 border border-white/30 text-black text-lg mb-6 focus:outline-none focus:ring-2 focus:ring-white"
-          /&gt;
-          {errorAuth && &lt;p className="text-red-300 mb-4 text-center"&gt;{errorAuth}&lt;/p&gt;}
-          &lt;button
+          />
+          {errorAuth && <p className="text-red-300 mb-4 text-center">{errorAuth}</p>}
+          <button
             onClick={sendOTP}
             disabled={!phone || loading}
             className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-2xl text-lg transition-all disabled:opacity-50"
-          &gt;
+          >
             {loading ? 'Sending...' : textsAuth.sendOTP}
-          &lt;/button&gt;
-          &lt;div className="mt-8 flex space-x-4 justify-center"&gt;
-            &lt;button onClick={() => setLang('en')} className={`px-4 py-2 rounded-xl ${lang === 'en' ? 'bg-white/30' : 'bg-white/10'}`}&gt;EN&lt;/button&gt;
-            &lt;button onClick={() => setLang('sw')} className={`px-4 py-2 rounded-xl ${lang === 'sw' ? 'bg-white/30' : 'bg-white/10'}`}&gt;SW&lt;/button&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
+          </button>
+          <div className="mt-8 flex space-x-4 justify-center">
+            <button onClick={() => setLang('en')} className={`px-4 py-2 rounded-xl ${lang === 'en' ? 'bg-white/30' : 'bg-white/10'}`}>EN</button>
+            <button onClick={() => setLang('sw')} className={`px-4 py-2 rounded-xl ${lang === 'sw' ? 'bg-white/30' : 'bg-white/10'}`}>SW</button>
+          </div>
+        </div>
+      </div>
     );
   }
 
   if (step === 'otp') {
     return (
-      &lt;div className="min-h-screen bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center p-8"&gt;
-        &lt;div className="bg-white/30 backdrop-blur-xl rounded-3xl p-10 max-w-md w-full shadow-2xl text-white"&gt;
-          &lt;h2 className="text-3xl font-bold mb-4 text-center"&gt;OTP sent to {phone}&lt;/h2&gt;
-          &lt;p className="text-lg mb-8 text-center opacity-90"&gt;{textsAuth.otp}&lt;/p&gt;
-          &lt;input
+      <div className="min-h-screen bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center p-8">
+        <div className="bg-white/30 backdrop-blur-xl rounded-3xl p-10 max-w-md w-full shadow-2xl text-white">
+          <h2 className="text-3xl font-bold mb-4 text-center">OTP sent to {phone}</h2>
+          <p className="text-lg mb-8 text-center opacity-90">{textsAuth.otp}</p>
+          <input
             type="text"
             placeholder="123456"
             value={otp}
             onChange={(e) => setOtp(e.target.value.replace(/\\D/g, ''))}
             className="w-full p-6 rounded-2xl bg-white/50 border border-white/30 text-black text-2xl text-center mb-6 focus:outline-none focus:ring-2 focus:ring-white"
             maxLength={6}
-          /&gt;
-          {errorAuth && &lt;p className="text-red-300 mb-4 text-center"&gt;{errorAuth}&lt;/p&gt;}
-          &lt;button
+          />
+          {errorAuth && <p className="text-red-300 mb-4 text-center">{errorAuth}</p>}
+          <button
             onClick={verifyOTP}
             disabled={otp.length < 6 || loading}
             className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-2xl text-lg transition-all disabled:opacity-50"
-          &gt;
+          >
             {loading ? 'Verifying...' : textsAuth.verify}
-          &lt;/button&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
+          </button>
+        </div>
+      </div>
     );
   }
 
   if (step === 'profile') {
     const [formData, setFormData] = useState({ name: '', age: '', county: '' });
     return (
-      &lt;div className="min-h-screen bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center p-8"&gt;
-        &lt;div className="bg-white/20 backdrop-blur-xl rounded-3xl p-10 max-w-md w-full shadow-2xl text-white"&gt;
-          &lt;h2 className="text-3xl font-bold mb-8 text-center"&gt;{textsAuth.profileTitle}&lt;/h2&gt;
-          &lt;input
+      <div className="min-h-screen bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center p-8">
+        <div className="bg-white/20 backdrop-blur-xl rounded-3xl p-10 max-w-md w-full shadow-2xl text-white">
+          <h2 className="text-3xl font-bold mb-8 text-center">{textsAuth.profileTitle}</h2>
+          <input
             type="text"
             placeholder={textsAuth.name}
             value={formData.name}
-            onChange={(e) => setFormData({...formData, name: e.target.value})}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             className="w-full p-4 rounded-2xl bg-white/50 border border-white/30 text-black mb-4 focus:outline-none focus:ring-2 focus:ring-white"
-          /&gt;
-          &lt;input
+          />
+          <input
             type="number"
             placeholder={textsAuth.age}
             value={formData.age}
-            onChange={(e) => setFormData({...formData, age: e.target.value})}
+            onChange={(e) => setFormData({ ...formData, age: e.target.value })}
             min="18"
             max="100"
             className="w-full p-4 rounded-2xl bg-white/50 border border-white/30 text-black mb-4 focus:outline-none focus:ring-2 focus:ring-white"
-          /&gt;
-          &lt;select
+          />
+          <select
             value={formData.county}
-            onChange={(e) => setFormData({...formData, county: e.target.value})}
+            onChange={(e) => setFormData({ ...formData, county: e.target.value })}
             className="w-full p-4 rounded-2xl bg-white/50 border border-white/30 text-black mb-6 focus:outline-none focus:ring-2 focus:ring-white"
-          &gt;
-            &lt;option value=""&gt;{textsAuth.county}&lt;/option&gt;
-            {counties.map(c => &lt;option key={c} value={c}&gt;{c}&lt;/option&gt;)}
-          &lt;/select&gt;
-          &lt;button
+          >
+            <option value="">{textsAuth.county}</option>
+            {counties.map(c => <option key={c} value={c}>{c}</option>)}
+          </select>
+          <button
             onClick={() => updateProfile(formData)}
             disabled={!formData.name || !formData.age || !formData.county || loading}
             className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-2xl text-lg transition-all disabled:opacity-50"
-          &gt;
+          >
             {loading ? 'Saving...' : textsAuth.submit}
-          &lt;/button&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
+          </button>
+        </div>
+      </div>
     );
   }
 
@@ -372,35 +372,43 @@ export default function Home() {
   }, []);
 
   return (
-    &lt;div className="min-h-screen bg-gradient-to-br from-green-400 via-blue-500 to-purple-600"&gt;
-      &lt;Head&gt;
-        &lt;title&gt;{texts.title}&lt;/title&gt;
-      &lt;/Head&gt;
-      &lt;div className="max-w-6xl mx-auto p-8"&gt;
-        &lt;div className="flex justify-between items-center mb-8"&gt;
-          &lt;h1 className="text-4xl font-bold text-white"&gt;{textsAuth.dashboardTitle}&lt;/h1&gt;
-          &lt;div className="flex space-x-4"&gt;
-            &lt;a href="/portfolio" className="bg-blue-500 text-white px-6 py-2 rounded-xl hover:bg-blue-600"&gt;{textsAuth.portfolio}&lt;/a&gt;
-            &lt;a href="http://localhost:3002" className="bg-gray-500 text-white px-6 py-2 rounded-xl hover:bg-gray-600"&gt;{textsAuth.admin}&lt;/a&gt;
-            &lt;button onClick={logout} className="bg-red-500 text-white px-6 py-2 rounded-xl hover:bg-red-600"&gt;Logout&lt;/button&gt;
-            &lt;div className="flex space-x-2"&gt;
-              &lt;button onClick={() => setLang('en')} className={`px-4 py-2 rounded-xl ${lang === 'en' ? 'bg-white text-blue-600' : 'bg-white/20 text-white'}`}&gt;EN&lt;/button&gt;
-              &lt;button onClick={() => setLang('sw')} className={`px-4 py-2 rounded-xl ${lang === 'sw' ? 'bg-white text-blue-600' : 'bg-white/20 text-white'}`}&gt;SW&lt;/button&gt;
-            &lt;/div&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div className="grid md:grid-cols-3 gap-8 mb-12"&gt;
-          &lt;div className="md:col-span-1 bg-white/20 backdrop-blur-xl rounded-3xl p-8 text-white"&gt;
-            &lt;h2 className="text-2xl font-bold mb-4"&gt;{textsAuth.balance}&lt;/h2&gt;
-            &lt;p className="text-4xl font-bold text-green-300"&gt;KES {user?.vkes_balance || 1000}&lt;/p&gt;
-            &lt;p className="text-lg opacity-90 mt-2"&gt;{user?.name}, {user?.age}, {user?.county}&lt;/p&gt;
-          &lt;/div&gt;
-          &lt;div className="md:col-span-2 bg-white/20 backdrop-blur-xl rounded-3xl p-8 text-white"&gt;
-            &lt;h2 className="text-2xl font-bold mb-6"&gt;{textsAuth.markets}&lt;/h2&gt;
-            &lt;div className="space-y-4"&gt;
+    <div className="min-h-screen bg-gradient-to-br from-green-400 via-blue-500 to-purple-600">
+      <Head>
+        <title>{texts.title}</title>
+      </Head>
+      <div className="max-w-6xl mx-auto p-8">
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-4xl font-bold text-white">{textsAuth.dashboardTitle}</h1>
+          <div className="flex space-x-4">
+            <a href="/portfolio" className="bg-blue-500 text-white px-6 py-2 rounded-xl hover:bg-blue-600">{textsAuth.portfolio}</a>
+            <a href="http://localhost:3002" className="bg-gray-500 text-white px-6 py-2 rounded-xl hover:bg-gray-600">{textsAuth.admin}</a>
+            <button onClick={logout} className="bg-red-500 text-white px-6 py-2 rounded-xl hover:bg-red-600">Logout</button>
+            <div className="flex space-x-2">
+              <button onClick={() => setLang('en')} className={`px-4 py-2 rounded-xl ${lang === 'en' ? 'bg-white text-blue-600' : 'bg-white/20 text-white'}`}>EN</button>
+              <button onClick={() => setLang('sw')} className={`px-4 py-2 rounded-xl ${lang === 'sw' ? 'bg-white text-blue-600' : 'bg-white/20 text-white'}`}>SW</button>
+            </div>
+          </div>
+        </div>
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="md:col-span-1 bg-white/20 backdrop-blur-xl rounded-3xl p-8 text-white">
+            <h2 className="text-2xl font-bold mb-4">{textsAuth.balance}</h2>
+            <p className="text-4xl font-bold text-green-300">KES {user?.vkes_balance || 1000}</p>
+            <p className="text-lg opacity-90 mt-2">{user?.name}, {user?.age}, {user?.county}</p>
+          </div>
+          <div className="md:col-span-2 bg-white/20 backdrop-blur-xl rounded-3xl p-8 text-white">
+            <h2 className="text-2xl font-bold mb-6">{textsAuth.markets}</h2>
+            <div className="space-y-4">
               {markets.map((m) => (
-                &lt;div key={m.id} className="bg-white/10 p-6 rounded-2xl hover:bg-white/20 transition-all"&gt;
-                  &lt;h3 className="font-bold text-xl mb-2"&gt;{m.title}&lt;/h3&gt;
-                  &lt;p className="opacity-90 mb-4"&gt;{m.description}&lt;/p&gt;
-                  &lt;p className="text-sm opacity-75 mb-4"&gt;Ends: {new Date(m.end_date).toLocaleDateString()}
+                <div key={m.id} className="bg-white/10 p-6 rounded-2xl hover:bg-white/20 transition-all">
+                  <h3 className="font-bold text-xl mb-2">{m.title}</h3>
+                  <p className="opacity-90 mb-4">{m.description}</p>
+                  <p className="text-sm opacity-75 mb-4">Ends: {new Date(m.end_date).toLocaleDateString()}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
