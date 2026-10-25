@@ -72,7 +72,7 @@ unasibu/
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/bucky-ops/Uhasibu-Platform.git
+   git clone https://github.com/collins-muchiri/uhasibu-platform.git
    cd Uhasibu-Platform
    ```
 
@@ -274,7 +274,7 @@ If you use this platform in your research, please cite:
 ```
 Uhasibu Prediction Market Platform (2026)
 University Research Project
-https://github.com/bucky-ops/Uhasibu-Platform
+https://github.com/collins-muchiri/uhasibu-platform
 ```
 
 ## 📞 Support
@@ -290,3 +290,7 @@ This is a research prototype using virtual currency only. It is not a real gambl
 ---
 
 **Built with ❤️ for university academic research**
+
+## Contribution and license
+
+Issues and pull requests are welcome — please open an issue describing the proposed change before submitting substantive work. This project is released under the MIT License.
